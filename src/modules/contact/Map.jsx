@@ -7,7 +7,7 @@ Geocode.enableDebug();
 
 const MapContainer = ({
   google,
-  locations = [{ lat: 17.422901, lng: 78.486811 }],
+  locations = [{ lat: 41.998083, lng: -87.684416 }],
 }) => {
   useEffect(() => {
     Geocode.fromLatLng(locations[0].lat, locations[0].lng).then(
@@ -47,19 +47,19 @@ const MapContainer = ({
         width: "100%",
         height: "100%",
       }}
-      center={{ lat: 17.422901, lng: 78.486811 - 0.015 }}
-      initialCenter={{ lat: 17.422901, lng: 78.486811 - 0.015 }}
+      center={{ lat: 41.998083, lng: -87.684416 - 0.015 }}
+      initialCenter={{ lat: 41.998083, lng: -87.684416 - 0.015 }}
       zoom={14}
       // disableDefaultUI={true}
     >
-      <InfoWindow visible={true} position={{ lat: 17.422901, lng: 78.486811 }}>
+      <InfoWindow visible={true} position={{ lat: 41.998083, lng: -87.684416 }}>
         <p>
           {" "}
-          CFFP+5MG, Bhagyalaxmi Nagar, Kavadiguda, Hyderabad, Telangana 500080
+         2144 W Devon Ave, Chicago, IL 60659, USA
         </p>
       </InfoWindow>
       {locations.map((coords, index) => (
-        <Marker position={{ lat: 17.422901, lng: 78.486811 }} key={index} />
+        <Marker position={{ lat: 41.998083, lng: -87.684416 }} key={index} />
       ))}
     </Map>
   );

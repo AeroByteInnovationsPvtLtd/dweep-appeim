@@ -4,12 +4,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Swiper from "react-id-swiper";
-import homeAutomationImg from "../../assets/images/home-automation.png";
-import officeMgmtImg from "../../assets/images/office-mgmt.png";
-import agricultureImg from "../../assets/images/agriculture.png";
-import mallsImg from "../../assets/images/malls.png";
-import logisticsImg from "../../assets/images/logistics.png";
-import storesImg from "../../assets/images/stores.png";
+import BaseCorrection from "../../assets/images/BaseCorrection1.png";
+import colorSolutionImg from "../../assets/images/colorSolution.png";
+import dispensingSoftwareImg from "../../assets/images/dispensingSoftware.png";
+import colorDatabaseImg from "../../assets/images/colorDatabase.png";
+import dispenserSupportImg from "../../assets/images/dispenserSupport.png";
+import singleSourceImg from "../../assets/images/singleSourceSolution.png";
 import subInfoImageOne from "../../assets/images/sub-info-image-one.png";
 import homeSubImageOne from "../../assets/images/sub-info-image-one.png";
 import homeSubImageTwo from "../../assets/images/sub-info-image-one.png";
@@ -38,47 +38,33 @@ const SupportAreas = (props) => {
     id: 2,
     data: [
       {
-        heading: "Asset Tracking",
+        heading: "Color Matching & Formulation",
         paragraph:
-          "Record assets, scan and discover new assets and update the inventory automatically, and monitor the entire life cycle of each asset",
+          "We Help in developing precise color recipes to meet customer or paint industry specifications.",
         subData: {
           subImageUrl: subInfoImageOne,
-          title: " Livestock Managment",
-          desc: `It   was   observed   that   industrial   agricultural
-          companies depends strongly on manual workforce to carry out their farm activity. Due to
-          global   changes   in   economic   landscape,     daily   basis   supply   demands   get   increasing.
-          Livestock   is   a   section   farming   that   requires   regular   monitory.   The   IoT   based   system
-          provide farmers with stock information directly to their smartphone. It enables livestock
-          management   to   quickly   detect   spread   of   flue   and   separate   infected   breeds   from   the
-          unaffected breeds.`,
+          title: "Color Matching & Formulation",
+          desc: `We Help in developing precise color recipes to meet customer or paint industry specifications.`,
         },
       },
       {
-        heading: "Time Attandance",
+        heading: "Base & Tint Optimization",
         paragraph:
-          "Our attendance solution that integrates with it seamlessly any HR system which eliminate manual data entry or incomplete importing from your time tracking tool.",
+          "We offer service to ensuring paint bases and colorants blend seamlessly for accurate, repeatable shades.",
         subData: {
           subImageUrl: subInfoImageOne,
-          title: " Time Managment",
-          desc: `It   was   observed   that   industrial   agricultural
-          companies depends strongly on manual workforce to carry out their farm activity. Due to
-          global   changes   in   economic   landscape,     daily   basis   supply   demands   get   increasing.
-          Livestock   is   a   section   farming   that   requires   regular   monitory.   The   IoT   based   system
-          provide farmers with stock information directly to their smartphone. It enables livestock
-          management   to   quickly   detect   spread   of   flue   and   separate   infected   breeds   from   the
-          unaffected breeds.`,
+          title: "Base & Tint Optimization",
+          desc: `We offer service to ensuring paint bases and colorants blend seamlessly for accurate, repeatable shades.`,
         },
       },
       {
-        heading: "Cyber Security",
+        heading: "Quality Control & Standardization",
         paragraph:
-          "Mobile notification , email notification to the employees and managment on time tracking, office enviroment and asser status.",
+          "We train your team on industry instruments (like spectrophotometers) to verify consistency, durability, and performance of the final color.",
         subData: {
           subImageUrl: subInfoImageOne,
-          title: " Cyber Security",
-          desc: `Vast development of resourceful technology in management will increase the rate of cybersecurity risks. 
-          The function of IoT technology in this section is to protect management data and network from 
-          potential hackers by making all devices defensible from threats.`,
+          title: " Quality Control & Standardization",
+          desc: `We train your team on industry instruments (like spectrophotometers) to verify consistency, durability, and performance of the final color.`,
         },
       },
     ],
@@ -115,39 +101,39 @@ const SupportAreas = (props) => {
   let sliderImages = [
     {
       id: 1,
-      imgUrl: homeAutomationImg,
-      imgText: "Home Automation",
+      imgUrl: BaseCorrection,
+      imgText: "Paint Base Correction",
       isOffer: false,
     },
     {
       id: 2,
-      imgUrl: officeMgmtImg,
-      imgText: "Office Management",
+      imgUrl: colorSolutionImg,
+      imgText: "Color Solution",
       isOffer: true,
     },
     {
       id: 3,
-      imgUrl: agricultureImg,
-      imgText: "Agriculture",
+      imgUrl: dispensingSoftwareImg,
+      imgText: "Dispensing Software",
       isOffer: false,
     },
     {
       id: 4,
-      imgUrl: mallsImg,
-      imgText: "Malls",
+      imgUrl: colorDatabaseImg,
+      imgText: "Color Database",
       isOffer: false,
     },
     {
       id: 5,
-      imgUrl: logisticsImg,
-      imgText: "Logistics",
+      imgUrl: dispenserSupportImg,
+      imgText: "Dispenser Support",
       isOffer: false,
     },
 
     {
       id: 6,
-      imgUrl: storesImg,
-      imgText: "Stores",
+      imgUrl: singleSourceImg,
+      imgText: "Single Source Solution",
       isOffer: false,
     },
   ];
@@ -156,33 +142,33 @@ const SupportAreas = (props) => {
       id: 1,
       data: [
         {
-          heading: "Access Controls",
+          heading: "Process of Base Correction",
           paragraph:
-            "This is an integral section of a well-constructed IoT sector. The security measured in this section has the ability to monitor diverse range of access points. Access points can be set to allow occupants by scanning fingerprints, password on a keypad, and facial scanning. This system is automated to verify a match and helps to check the credentials of anyone trying to gain entry.",
+            "We provide paint companies with base correction services, adjusting a paint’s color, opacity, and consistency to ensure accurate final shades after tinting.",
           subData: {
             subImageUrl: homeSubImageOne,
-            title: "Access Controls",
-            desc: "This is an integral section of a well-constructed IoT sector. The security measured in this section has the ability to monitor diverse range of access points. Access points can be set to allow occupants by scanning fingerprints, password on a keypad, and facial scanning. This system is automated to verify a match and helps to check the credentials of anyone trying to gain entry.",
+            title: "Process of Base Correction",
+            desc: "We provide paint companies with base correction services, adjusting a paint’s color, opacity, and consistency to ensure accurate final shades after tinting.",
           },
         },
         {
-          heading: "Sound Systems",
+          heading: "Tools & Equipment Utlizations",
           paragraph:
-            "In most sound system, there are mainly two kinds of sound sensors, which can either be the appliances sense high-pitched or ultra-low level of noise. This sound sensor system will react to each type of signals. For instance, this sound sensor system will easily detect when a baby is crying and turns in a signal light. This system also gives a sound when the door opens. It is possible to maintain a healthy lifestyle by acquiring this system.",
+            "Our service uses precision instruments—mixers, dispersers, spectrophotometers, and viscosity testers—to accurately adjust and standardize paint base color, opacity, and consistency before tinting.",
           subData: {
             subImageUrl: homeSubImageTwo,
-            title: "Sound Systems ",
-            desc: "In most sound system, there are mainly two kinds of sound sensors, which can either be the appliances sense high-pitched or ultra-low level of noise. This sound sensor system will react to each type of signals. For instance, this sound sensor system will easily detect when a baby is crying and turns in a signal light. This system also gives a sound when the door opens. It is possible to maintain a healthy lifestyle by acquiring this system.",
+            title: "Tools & Equipment Utlizations ",
+            desc: "Our service uses precision instruments—mixers, dispersers, spectrophotometers, and viscosity testers—to accurately adjust and standardize paint base color, opacity, and consistency before tinting.",
           },
         },
         {
-          heading: "Water Sensors",
+          heading: "Key Considerations",
           paragraph:
-            "The major purpose of this sensor is to limit water leakage damage or prevent flooding in the household. A water valve is installed to the system which is triggered once it detect excess wter. The HC-SR04 ultrasonic sensor or LM1830 can be an option for this system.",
+            "We treat paint base correction as a vital quality-control step, ensuring not just pigment adjustment but precise color accuracy, consistency, and production efficiency for our customers.",
           subData: {
             subImageUrl: homeSubImageThree,
-            title: "Water Sensors",
-            desc: "The major purpose of this sensor is to limit water leakage damage or prevent flooding in the household. A water valve is installed to the system which is triggered once it detect excess wter. The HC-SR04 ultrasonic sensor or LM1830 can be an option for this system.",
+            title: "Key Considerations",
+            desc: "We treat paint base correction as a vital quality-control step, ensuring not just pigment adjustment but precise color accuracy, consistency, and production efficiency for our customers.",
           },
         },
       ],
@@ -191,74 +177,68 @@ const SupportAreas = (props) => {
       id: 2,
       data: [
         {
-          heading: "Asset Tracking",
-          paragraph:
-            "Record assets, scan and discover new assets and update the inventory automatically, and monitor the entire life cycle of each asset",
-          subData: {
-            subImageUrl: assetSubImageOne,
-            title: "Asset Tracking",
-            desc: `It   was   observed   that   industrial   agricultural
-          companies depends strongly on manual workforce to carry out their farm activity. Due to
-          global   changes   in   economic   landscape,     daily   basis   supply   demands   get   increasing.
-          Livestock   is   a   section   farming   that   requires   regular   monitory.   The   IoT   based   system
-          provide farmers with stock information directly to their smartphone. It enables livestock
-          management   to   quickly   detect   spread   of   flue   and   separate   infected   breeds   from   the
-          unaffected breeds.`,
-          },
+        heading: "Color Matching & Formulation",
+        paragraph:
+          "We Help in developing precise color recipes to meet customer or paint industry specifications.",
+        subData: {
+          subImageUrl: subInfoImageOne,
+          title: "Color Matching & Formulation",
+          desc: `We Help in developing precise color recipes to meet customer or paint industry specifications.`,
         },
-        {
-          heading: "Time Attandance",
-          paragraph:
-            "Our attendance solution that integrates with it seamlessly any HR system which eliminate manual data entry or incomplete importing from your time tracking tool.",
-          subData: {
-            subImageUrl: assetSubImageTwo,
-            title: "Time Attandance ",
-            desc: "Our attendance solution that integrates with it seamlessly any HR system which eliminate manual data entry or incomplete importing from your time tracking tool.",
-          },
+      },
+      {
+        heading: "Base & Tint Optimization",
+        paragraph:
+          "We offer service to ensuring paint bases and colorants blend seamlessly for accurate, repeatable shades.",
+        subData: {
+          subImageUrl: subInfoImageOne,
+          title: "Base & Tint Optimization",
+          desc: `We offer service to ensuring paint bases and colorants blend seamlessly for accurate, repeatable shades.`,
         },
-        {
-          heading: "Cyber Security",
-          paragraph:
-            "Vast development of resourceful technology in management will increase the rate of cybersecurity risks. The function of IoT technology in this section is to protect management data and network from potential hackers by making all devices defensible from threats.",
-          subData: {
-            subImageUrl: assetSubImageThree,
-            title: "Cyber Security ",
-            desc: "Vast development of resourceful technology in management will increase the rate of cybersecurity risks. The function of IoT technology in this section is to protect management data and network from potential hackers by making all devices defensible from threats.",
-          },
+      },
+      {
+        heading: "Quality Control & Standardization",
+        paragraph:
+          "We train your team on industry instruments (like spectrophotometers) to verify consistency, durability, and performance of the final color.",
+        subData: {
+          subImageUrl: subInfoImageOne,
+          title: " Quality Control & Standardization",
+          desc: `We train your team on industry instruments (like spectrophotometers) to verify consistency, durability, and performance of the final color.`,
         },
+      },
       ],
     },
     {
       id: 3,
       data: [
         {
-          heading: "Live Stock Management",
+          heading: "Accurate Formula Management",
           paragraph:
-            "It was observed that industrial agricultural companies depends strongly on manual workforce to carry out their farm activity. Due to global changes in economic landscape,  daily basis supply demands get increasing. Livestock is a section farming that requires regular monitory. The IoT based system provide farmers with stock information directly to their smartphone. It enables livestock management to quickly detect spread of flue and separate infected breeds from the unaffected breeds.",
+            "Stores and manages color formulas to ensure precise dispensing of tints and bases.",
           subData: {
             subImageUrl: aggriSubImageOne,
-            title: "Live Stock Managment",
-            desc: "It was observed that industrial agricultural companies depends strongly on manual workforce to carry out their farm activity. Due to global changes in economic landscape,  daily basis supply demands get increasing. Livestock is a section farming that requires regular monitory. The IoT based system provide farmers with stock information directly to their smartphone. It enables livestock management to quickly detect spread of flue and separate infected breeds from the unaffected breeds.",
+            title: "Accurate Formula Management",
+            desc: "Stores and manages color formulas to ensure precise dispensing of tints and bases.",
           },
         },
         {
-          heading: "Harvesting Robot",
+          heading: "Automated Mixing & Dispensing",
           paragraph:
-            "The system of using robot to pick crop sounds interesting and solved the problem of labor shortages. This system works delicately in the process of picking fruits and vegetables. This integrated machine can operate 24 hours without stopping.",
+            "Controls machines to deliver exact quantities, reducing errors and waste.",
           subData: {
             subImageUrl: aggriSubImageTwo,
-            title: "Harvesting Robot",
-            desc: "The system of using robot to pick crop sounds interesting and solved the problem of labor shortages. This system works delicately in the process of picking fruits and vegetables. This integrated machine can operate 24 hours without stopping.",
+            title: "Automated Mixing & Dispensing",
+            desc: "Controls machines to deliver exact quantities, reducing errors and waste.",
           },
         },
         {
-          heading: "Smart Drones (SDS)",
+          heading: "Reporting & Inventory Control",
           paragraph:
-            "Industrial drones have several functions in smart farming. What are drones used for?. Drones are used to monitor the quality of air, moisture, and soil. This, the smart drones system helps with the physical activities such as integrated spaying fertilizer and preventing breakout of disease in farmland. Drones smart system are installed  with sensors and cameras used for surveying and mapping farmland., it can be  remoted controlled or fly automatically using  software-controlled flight plans in their system.",
+            "Tracks usage, inventory, and performance for better planning and cost efficiency.",
           subData: {
             subImageUrl: aggriSubImageThree,
-            title: "Smart Drones (SDS)",
-            desc: "Industrial drones have several functions in smart farming. What are drones used for?. Drones are used to monitor the quality of air, moisture, and soil. This, the smart drones system helps with the physical activities such as integrated spaying fertilizer and preventing breakout of disease in farmland. Drones smart system are installed  with sensors and cameras used for surveying and mapping farmland., it can be  remoted controlled or fly automatically using  software-controlled flight plans in their system.",
+            title: "Reporting & Inventory Control",
+            desc: "Tracks usage, inventory, and performance for better planning and cost efficiency.",
           },
         },
       ],
@@ -267,23 +247,33 @@ const SupportAreas = (props) => {
       id: 4,
       data: [
         {
-          heading: "Product Information",
+          heading: "Cloud Storage of Color Formulas",
           paragraph:
-            "A wireless digital signal enable display of item and kiosks to move freely within the premises, without using any ethernet cables. By utilizing IoT, Large data, analytics and marketing strategies, shopping malls has the potential to get smart and invent shoppers experience more advance and easy.",
+            "Keeps all standard and custom color recipes in one secure place.",
           subData: {
             subImageUrl: mallsSubImageOne,
-            title: "Product Information",
-            desc: "A wireless digital signal enable display of item and kiosks to move freely within the premises, without using any ethernet cables. By utilizing IoT, Large data, analytics and marketing strategies, shopping malls has the potential to get smart and invent shoppers experience more advance and easy.",
+            title: "Cloud Storage of Color Formulas",
+            desc: "Keeps all standard and custom color recipes in one secure place.",
           },
         },
         {
-          heading: "Customer Behaviour",
+          heading: "Fast & Accurate Color Matching",
           paragraph:
-            "Consumer foot traffic can be monitored and analyzed within the malls to enable better consumer experience. Integrated IoT connected system allows retailer to collect data of people coming in and exiting the store. This system gives room for better customer experience and lot more.",
+            "Quickly retrieves and matches colors for consistent results.",
           subData: {
             subImageUrl: mallsSubImageTwo,
-            title: "Customer Behaviour",
-            desc: "Consumer foot traffic can be monitored and analyzed within the malls to enable better consumer experience. Integrated IoT connected system allows retailer to collect data of people coming in and exiting the store. This system gives room for better customer experience and lot more.",
+            title: "Fast & Accurate Color Matching",
+            desc: "Quickly retrieves and matches colors for consistent results.",
+          },
+        },
+         {
+          heading: "Regular Updates & Standardization",
+          paragraph:
+            "Ensures color data is current and uniform across all locations.",
+          subData: {
+            subImageUrl: mallsSubImageTwo,
+            title: "Regular Updates & Standardization",
+            desc: "Ensures color data is current and uniform across all locations.",
           },
         },
       ],
@@ -292,13 +282,33 @@ const SupportAreas = (props) => {
       id: 5,
       data: [
         {
-          heading: "Real Time Fleet Management",
+          heading: "Online & In-person Support",
           paragraph:
-            "Fleet administration is perhaps the most outstanding IoT solution for logistics. Utilizing GPS or satellite trackers to collect vehicle telematics, companies can improve driver’s subordination, increase the precision of delivery schedules, and ensure safety of both drivers and cargo. Fleet supervision solutions may also emphasize fuel usage monitoring and driver attitude monitoring. ",
+            "Our dispenser technicians specialize in leading brands such as Fast & Fluid, Corob, and more, with dedicated services available across all major cities in Saudi Arabia. ",
           subData: {
             subImageUrl: logisticsSubImageOne,
-            title: "Real Time Fleet Management",
-            desc: "Fleet administration is perhaps the most outstanding IoT solution for logistics. Utilizing GPS or satellite trackers to collect vehicle telematics, companies can improve driver’s subordination, increase the precision of delivery schedules, and ensure safety of both drivers and cargo. Fleet supervision solutions may also emphasize fuel usage monitoring and driver attitude monitoring. ",
+            title: "Online & In-person Support",
+            desc: "Our dispenser technicians specialize in leading brands such as Fast & Fluid, Corob, and more, with dedicated services available across all major cities in Saudi Arabia. ",
+          },
+        },
+         {
+          heading: "Spare Parts Availability",
+          paragraph:
+            "We provide a variety of spare parts for most dispenser brands used in the paint industry across Saudi Arabia.",
+          subData: {
+            subImageUrl: logisticsSubImageOne,
+            title: "Spare Parts Availability",
+            desc: "We provide a variety of spare parts for most dispenser brands used in the paint industry across Saudi Arabia.",
+          },
+        },
+         {
+          heading: "Support App",
+          paragraph:
+            "Our support app ensures all retail store requests are handled promptly and serviced without delays.",
+          subData: {
+            subImageUrl: logisticsSubImageOne,
+            title: "Support App",
+            desc: "Our support app ensures all retail store requests are handled promptly and serviced without delays.",
           },
         },
       ],
@@ -307,13 +317,32 @@ const SupportAreas = (props) => {
       id: 6,
       data: [
         {
-          heading: "Invetory Tracking and Analytics",
+          heading: "Integrated Systems",
           paragraph:
-            "IoT in logistics stimulates the storage of goods and management of stock levels. In a logistics ecosystem, it enables  companies to have clear transparency in its various operations, removed supporting in seamless inventory organization. While local barcodes are adequate for basic inventory, smart labels and RFID tags provides broader facilities for automation and analytics",
+            "Combines software, machines, and colorants for seamless tinting operations.",
           subData: {
             subImageUrl: storesSubImageOne,
-            title: "Invetory Tracking and Analytics",
-            desc: "IoT in logistics stimulates the storage of goods and management of stock levels. In a logistics ecosystem, it enables  companies to have clear transparency in its various operations, removed supporting in seamless inventory organization. While local barcodes are adequate for basic inventory, smart labels and RFID tags provides broader facilities for automation and analytics",
+            title: "Integrated Systems",
+            desc: "Combines software, machines, and colorants for seamless tinting operations.",
+          },
+        },
+        {
+          heading: "Consistent Color Accuracy",
+          paragraph:
+            "Ensures precise and repeatable shades across all locations.",
+          subData: {
+            subImageUrl: storesSubImageOne,
+            title: "Consistent Color Accuracy",
+            desc: "Ensures precise and repeatable shades across all locations.",
+          },
+        },{
+          heading: "Efficient Service & Support",
+          paragraph:
+            "Provides end-to-end support, from setup to maintenance, reducing downtime.",
+          subData: {
+            subImageUrl: storesSubImageOne,
+            title: "Efficient Service & Support",
+            desc: "Provides end-to-end support, from setup to maintenance, reducing downtime.",
           },
         },
       ],
@@ -364,19 +393,7 @@ const SupportAreas = (props) => {
                   onClick={() => handleImageClick("", obj.id, index)}
                 >
                   <span className="masking-image"></span>
-                  {obj.isOffer ? (
-                    <div className="badge-wrapper">
-                      <div className="ribbon ribbon-top-left">
-                        <span>
-                          <label>
-                            <strong>Free</strong> 5 Employees
-                          </label>
-                        </span>
-                      </div>
-                    </div>
-                  ) : (
-                    ""
-                  )}
+                  
                   <img className="swiper-image" src={obj.imgUrl} alt="S" />
                   <p className="slider-item-heading">{obj.imgText}</p>
                 </div>
