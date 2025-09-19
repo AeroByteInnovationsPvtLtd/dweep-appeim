@@ -18,8 +18,10 @@ import CustomAutoDropDown from "../../common/components/custom-auto-dropdown/Cus
 import MapContainer from "./Map";
 // import Map from "./Map";
 const Contact = (props) => {
-
   const [title, setTitle] = useState("Mr.");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: "", message: "" });
+
   const handleChange = (event) => {
     setTitle(event.target.value);
   };
@@ -29,6 +31,7 @@ const Contact = (props) => {
       userName: "",
       email: "",
       title: "Mr",
+      description: "",
     },
   });
   const { t } = useTranslation();
@@ -42,7 +45,61 @@ const Contact = (props) => {
     return field.isMandatory;
   };
   const titleListChange = () => {};
-  const submitForm = () => {};
+
+  const submitForm = async (data) => {
+    setIsSubmitting(true);
+    setSubmitStatus({ type: "", message: "" });
+
+    try {
+      // Prepare data for backend API
+      const formData = {
+        name: `${title} ${data.userName}`,
+        email: data.email,
+        message: data.description || "",
+      };
+
+      // Get the backend URL from environment or use default
+      const backendUrl =
+        import.meta.env.VITE_BACKEND_URL || "http://localhost:5002";
+
+      const response = await fetch(`${backendUrl}/api/contact/submit`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message:
+            "Your message has been sent successfully! We will get back to you soon.",
+        });
+        // Reset form on success
+        setValue("userName", "");
+        setValue("email", "");
+        setValue("description", "");
+        setTitle("Mr.");
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message:
+            result.message || "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Contact form submission error:", error);
+      setSubmitStatus({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   useEffect(() => {
     AOS.init({
       duration: 2000,
@@ -63,6 +120,14 @@ const Contact = (props) => {
           <div className="Contact__form-section">
             <div className="Contact__form-inner-sec">
               <p className="Contact__form-header">Let's work together</p>
+
+              {/* Status Messages */}
+              {submitStatus.message && (
+                <div className={`contact-status-message ${submitStatus.type}`}>
+                  {submitStatus.message}
+                </div>
+              )}
+
               <form
                 noValidate
                 autoComplete="off"
@@ -71,7 +136,9 @@ const Contact = (props) => {
                 <div className="Contact__form-group-row custom-form-group-row">
                   <div className="form-group-col custom-dropdown">
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">Title</InputLabel>
+                      <InputLabel id="demo-simple-select-label">
+                        Title
+                      </InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -156,9 +223,22 @@ const Contact = (props) => {
                       ariaLabel={"minimum height"}
                       rows={5.5}
                       placeHolder={"Description"}
-                      maxLength={150}
+                      maxLength={500}
                       control={control}
                       errors={errors}
+                      required
+                      rules={{
+                        required: "Please enter a message",
+                        minLength: {
+                          value: 10,
+                          message:
+                            "Message must be at least 10 characters long",
+                        },
+                        maxLength: {
+                          value: 500,
+                          message: "Message must be less than 500 characters",
+                        },
+                      }}
                     />
                   </div>
                 </div>
@@ -182,7 +262,9 @@ const Contact = (props) => {
                     </div>
                   </div>
                   <div className="Contact__form-footer-right-sec">
-                    <button>Send Enquiry</button>
+                    <button type="submit" disabled={isSubmitting}>
+                      {isSubmitting ? "Sending..." : "Send Enquiry"}
+                    </button>
                   </div>
                 </div>
               </form>
