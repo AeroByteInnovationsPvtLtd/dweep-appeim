@@ -30,6 +30,7 @@
   &__map-section {
     position: relative;
     height: 530px;
+    overflow: hidden;
     .gm-style-iw{
       max-width: 290px !important;
     }
