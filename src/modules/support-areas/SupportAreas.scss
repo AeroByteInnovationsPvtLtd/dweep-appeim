@@ -17,6 +17,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0 80px;
   }
   &__swiper-section {
     max-width: 1280px;
@@ -347,7 +348,7 @@
       grid-template-columns: 1fr;
     }
     &__section-header {
-      padding: 0 15px;
+      padding: 0 80px;
     }
     &__heder-title {
       font-size: 25px;
