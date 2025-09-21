@@ -1,31 +1,88 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { connectDB } from './config/db.js';
 import contactRoutes from './routes/contactRoutes.js';
+
+// ES module __dirname equivalent
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 connectDB();
 
 const app = express();
 
-// CORS configuration
+// Trust proxy for production deployment
+app.set('trust proxy', 1);
+
+// CORS configuration for production and development
+const allowedOrigins = [
+  'http://localhost:5173', 
+  'http://localhost:5174', 
+  'http://localhost:5000',
+  'http://localhost:3000',
+  'http://localhost:4173',
+  process.env.FRONTEND_URL,
+  process.env.PRODUCTION_URL,
+  // Add your production domains here
+  'https://your-app.netlify.app',
+  'https://your-app.vercel.app',
+  'https://your-app.onrender.com',
+  'https://your-app.up.railway.app'
+].filter(Boolean);
+
 app.use(cors({
-  origin: [
-    'http://localhost:5173', 
-    'http://localhost:5174', 
-    'http://localhost:5000',
-    'http://localhost:3000',
-    'http://localhost:4173',
-  ], 
-  credentials: true
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    
+    // For development, allow all localhost origins
+    if (process.env.NODE_ENV === 'development' || origin.includes('localhost')) {
+      return callback(null, true);
+    }
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Security middleware
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Routes
+// Security headers
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
+
+// Serve static files from React build (for full-stack deployment)
+if (process.env.NODE_ENV === 'production') {
+  const frontendBuildPath = path.join(__dirname, '../dweep-appeim/dist');
+  app.use(express.static(frontendBuildPath));
+  
+  // Handle React routing - serve index.html for all non-API routes
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api/')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendBuildPath, 'index.html'));
+  });
+}
+
+// API Routes
 app.use('/api/contact', contactRoutes);
 
 // Health check endpoint

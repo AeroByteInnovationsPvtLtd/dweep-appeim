@@ -1,0 +1,68 @@
+{
+  "name": "dweep-appeim-monorepo",
+  "version": "1.0.0",
+  "description": "MERN Stack Application - Dweep AppEIM",
+  "private": true,
+  "scripts": {
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd dweep-appeim && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd dweep-appeim && npm run dev",
+    "build": "npm run build:frontend",
+    "build:frontend": "cd dweep-appeim && npm run build:prod",
+    "build:backend": "cd backend && npm run build",
+    "start": "npm run start:backend",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd dweep-appeim && npm run preview",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd dweep-appeim && npm test",
+    "deploy:netlify": "cd dweep-appeim && npm run deploy:netlify",
+    "deploy:vercel": "cd dweep-appeim && npm run deploy:vercel",
+    "deploy:railway": "cd backend && npm run deploy:railway",
+    "deploy:full": "npm run build:frontend && npm run deploy:netlify && npm run deploy:railway",
+    "health:backend": "curl -f http://localhost:5002/api/health || echo 'Backend health check failed'",
+    "health:frontend": "curl -f http://localhost:5173 || echo 'Frontend health check failed'",
+    "clean": "npm run clean:backend && npm run clean:frontend",
+    "clean:backend": "cd backend && rm -rf node_modules package-lock.json",
+    "clean:frontend": "cd dweep-appeim && rm -rf node_modules package-lock.json dist",
+    "lint": "npm run lint:backend && npm run lint:frontend",
+    "lint:backend": "cd backend && npm run lint || echo 'No linting configured for backend'",
+    "lint:frontend": "cd dweep-appeim && npm run lint || echo 'No linting configured for frontend'",
+    "postinstall": "npm run install:all"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "workspaces": [
+    "backend",
+    "dweep-appeim"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/dweep-appeim.git"
+  },
+  "keywords": [
+    "mern",
+    "react",
+    "express",
+    "mongodb",
+    "nodejs",
+    "vite",
+    "material-ui",
+    "deployment",
+    "production-ready"
+  ],
+  "author": "AeroByte Innovations Pvt Ltd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/your-username/dweep-appeim/issues"
+  },
+  "homepage": "https://github.com/your-username/dweep-appeim#readme"
+}

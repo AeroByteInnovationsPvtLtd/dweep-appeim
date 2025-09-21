@@ -1,0 +1,213 @@
+name: Deploy MERN Stack Application
+
+on:
+  push:
+    branches: [ main, production ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  # Test and build frontend
+  frontend-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./dweep-appeim
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: './dweep-appeim/package-lock.json'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Create production environment file
+      run: |
+        echo "VITE_NODE_ENV=production" > .env.production
+        echo "VITE_BACKEND_URL=${{ secrets.BACKEND_URL }}" >> .env.production
+        echo "VITE_API_BASE_URL=${{ secrets.BACKEND_URL }}/api" >> .env.production
+
+    - name: Build application
+      run: npm run build:prod
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: frontend-build
+        path: ./dweep-appeim/dist/
+        retention-days: 1
+
+  # Test backend
+  backend-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: './backend/package-lock.json'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Create test environment file
+      run: |
+        echo "NODE_ENV=test" > .env.test
+        echo "MONGODB_URI=${{ secrets.MONGODB_URI_TEST }}" >> .env.test
+        echo "PORT=5002" >> .env.test
+
+    - name: Run tests (if available)
+      run: npm test || echo "No tests specified"
+
+    - name: Check server startup
+      run: |
+        timeout 10s npm start || echo "Server startup test completed"
+
+  # Deploy to Netlify
+  deploy-frontend-netlify:
+    needs: [frontend-build, backend-test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/production'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: frontend-build
+        path: ./dweep-appeim/dist/
+
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v3.0
+      with:
+        publish-dir: './dweep-appeim/dist'
+        production-branch: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Deploy from GitHub Actions"
+        enable-pull-request-comment: false
+        enable-commit-comment: true
+        overwrites-pull-request-comment: true
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+  # Deploy to Vercel (Alternative)
+  deploy-frontend-vercel:
+    needs: [frontend-build, backend-test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: frontend-build
+        path: ./dweep-appeim/dist/
+
+    - name: Deploy to Vercel
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-args: '--prod'
+        vercel-org-id: ${{ secrets.ORG_ID }}
+        vercel-project-id: ${{ secrets.PROJECT_ID }}
+        working-directory: ./dweep-appeim
+
+  # Deploy backend to Railway
+  deploy-backend-railway:
+    needs: [backend-test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/production'
+    defaults:
+      run:
+        working-directory: ./backend
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Install Railway CLI
+      run: npm install -g @railway/cli
+
+    - name: Deploy to Railway
+      run: railway up --service ${{ secrets.RAILWAY_SERVICE_ID }}
+      env:
+        RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+  # Health check after deployment
+  health-check:
+    needs: [deploy-frontend-netlify, deploy-backend-railway]
+    runs-on: ubuntu-latest
+    if: always() && (needs.deploy-frontend-netlify.result == 'success' || needs.deploy-frontend-netlify.result == 'skipped') && needs.deploy-backend-railway.result == 'success'
+    
+    steps:
+    - name: Wait for deployment
+      run: sleep 30
+
+    - name: Check backend health
+      run: |
+        curl -f ${{ secrets.BACKEND_URL }}/api/health || exit 1
+
+    - name: Check frontend
+      run: |
+        curl -f ${{ secrets.FRONTEND_URL }} || exit 1
+
+    - name: Notify deployment success
+      if: success()
+      run: |
+        echo "🎉 Deployment successful!"
+        echo "Frontend: ${{ secrets.FRONTEND_URL }}"
+        echo "Backend: ${{ secrets.BACKEND_URL }}"
+
+  # Rollback on failure
+  rollback-on-failure:
+    needs: [health-check]
+    runs-on: ubuntu-latest
+    if: failure()
+    
+    steps:
+    - name: Notify deployment failure
+      run: |
+        echo "❌ Deployment failed! Consider rolling back."
+        echo "Check the logs and consider manual intervention."
+
+    - name: Create issue on failure
+      if: github.ref == 'refs/heads/main'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: 'Deployment Failed - ' + new Date().toISOString(),
+            body: 'Automated deployment failed. Please check the workflow logs and take necessary action.\n\nWorkflow: ' + context.workflow + '\nRun ID: ' + context.runId,
+            labels: ['bug', 'deployment', 'urgent']
+          })

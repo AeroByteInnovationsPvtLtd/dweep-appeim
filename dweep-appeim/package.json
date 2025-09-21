@@ -1,0 +1,62 @@
+{
+  "name": "appaim-website",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@hookform/error-message": "^2.0.0",
+    "@material-ui/core": "4.10.1",
+    "@material-ui/icons": "4.9.1",
+    "@material-ui/lab": "4.0.0-alpha.55",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "aos": "^2.3.4",
+    "axios": "^1.12.2",
+    "classnames": "^2.2.6",
+    "gh-pages": "^6.3.0",
+    "google-maps-react": "^2.0.6",
+    "i18next": "^19.8.3",
+    "react": "^17.0.2",
+    "react-countup": "^4.3.3",
+    "react-dom": "^17.0.2",
+    "react-geocode": "^0.2.3",
+    "react-hook-form": "^7.62.0",
+    "react-i18next": "^11.12.0",
+    "react-id-swiper": "^4.0.0",
+    "react-router-dom": "^5.2.0",
+    "swiper": "^12.0.1",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "build:prod": "vite build --mode production",
+    "serve": "vite preview",
+    "preview": "vite preview",
+    "deploy:netlify": "npm run build && netlify deploy --prod --dir=dist",
+    "deploy:vercel": "npm run build && vercel --prod",
+    "deploy:gh-pages": "npm run build && gh-pages -d dist",
+    "analyze": "npm run build && npx vite-bundle-analyzer dist/stats.html"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "sass": "^1.69.5",
+    "vite": "^4.5.0"
+  }
+}
