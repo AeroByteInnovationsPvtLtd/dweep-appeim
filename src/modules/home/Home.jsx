@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Home.scss";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+// import "swiper/css/navigation";
+// import "swiper/css/pagination";
 import Swiper from "react-id-swiper";
 
 import colormatchingImg from "../../assets/images/colormatching.png";
@@ -33,19 +33,20 @@ const Home = (props) => {
     centeredSlides: true,
     slideToClickedSlide: true,
     loop: true,
-    // pagination: {
-    //   el: ".swiper-pagination",
-    //   type: "bullets",
-    //   clickable: true,
-    // },
+    pagination: {
+      el: ".swiper-pagination",
+      type: "bullets",
+      clickable: true,
+    },
     autoplay: {
-      delay: 5000,
+      delay: 500,
       disableOnInteraction: false,
     },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
+    
+    // navigation: {
+    //   nextEl: ".swiper-button-next",
+    //   prevEl: ".swiper-button-prev",
+    // },
     breakpoints: {
       1024: {
         slidesPerView: 2,
@@ -76,13 +77,13 @@ const Home = (props) => {
       <div className="Home__inner-container-row">
         <div className="Home__inner-container-col left-sec">
           <div className="Home__banner-left-info-sec">
-            <p className="Home__banner-heading-one">INTIGRATING IoT,</p>
+            <p className="Home__banner-heading-one">INTIGRATING Color Tinting,</p>
             <p className="Home__banner-heading-two">DELIVERING RESULTS.</p>
             <p className="Home__banner-sub-heading">
               We provide next generation
             </p>
             <p className="Home__banner-sub-heading">
-               Business IoT Solutions
+               Tinting Color Solutions
             </p>
             
           </div>
@@ -91,7 +92,7 @@ const Home = (props) => {
         </div>
         <div className="Home__inner-container-col right-sec">
           <div className="Home__swiper-container">
-            <Swiper {...params} shouldSwiperUpdate rebuildOnUpdate={true}>
+            <Swiper {...params} shouldSwiperUpdate rebuildOnUpdate={true} navigation={true} scrollEnabled={false} showButtons={false}>
               {sliderImages.map((obj, index) => {
                 return (
                   <div key={index} className="slider-item">
@@ -100,6 +101,8 @@ const Home = (props) => {
                   </div>
                 );
               })}
+              
+
             </Swiper>
           </div>
         </div>
