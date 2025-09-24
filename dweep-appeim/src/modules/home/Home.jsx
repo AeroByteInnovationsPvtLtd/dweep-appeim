@@ -76,13 +76,13 @@ const Home = (props) => {
       <div className="Home__inner-container-row">
         <div className="Home__inner-container-col left-sec">
           <div className="Home__banner-left-info-sec">
-            <p className="Home__banner-heading-one">INTIGRATING IoT,</p>
+            <p className="Home__banner-heading-one">INTIGRATING Color Tinting,</p>
             <p className="Home__banner-heading-two">DELIVERING RESULTS.</p>
             <p className="Home__banner-sub-heading">
               We provide next generation
             </p>
             <p className="Home__banner-sub-heading">
-               Business IoT Solutions
+               Tinitng Color Solutions
             </p>
             
           </div>

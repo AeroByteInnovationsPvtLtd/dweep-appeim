@@ -66,7 +66,7 @@ const Footer = ({ scrollTo, refs }) => {
         </div>
       </div>
       <div className="Footer__copy-right-section">
-        <span> © 2021 All rights reserved. Appaim Private limited.</span>
+        <span> © 2025 All rights reserved. Dweep LLC USA</span>
       </div>
     </div>
   );
