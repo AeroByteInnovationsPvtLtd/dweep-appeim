@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-
 import {
   AppBar,
   Toolbar,
   IconButton,
   TextField,
-  Button
+  Button,
 } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -31,7 +30,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { Avatar } from "@material-ui/core";
 
-
 // import * as store from "../../store";
 // import { LanguageContext } from "../../LanguageContext";
 // import { CustomInput } from "../../../common/components";
@@ -39,31 +37,32 @@ import { Avatar } from "@material-ui/core";
 import "./NavBar.scss";
 import { useContext } from "react";
 import { useReducer } from "react";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../language-switcher/LanguageSwitcher";
 // import { AuthContext } from "../../AuthContext";
 // import LanguageDropdown from "../language-dropdown/LanguageDropdown";
-// import { useTranslation } from "react-i18next";
 // import { apiGroupSearch } from "../../../modules/initial-setup/initial-setup-service";
 // import { apiCompanySearch } from "../../../modules/org-setup/components/companies/companies-service";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   list: {
     // width: '80vw',
-    width: 275
+    width: 275,
   },
   fullList: {
-    width: "auto"
+    width: "auto",
   },
   nested: {
-    paddingLeft: theme.spacing(2)
+    paddingLeft: theme.spacing(2),
   },
   fab: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   absolute: {
     position: "absolute",
     bottom: theme.spacing(2),
-    right: theme.spacing(3)
-  }
+    right: theme.spacing(3),
+  },
 }));
 
 const navBarReducer = (state, action) => {
@@ -78,14 +77,14 @@ const navBarReducer = (state, action) => {
       const { openMenus } = state;
       let res = [];
       if (openMenus.includes(action.menuText)) {
-        res = openMenus.filter(it => it !== action.menuText);
+        res = openMenus.filter((it) => it !== action.menuText);
       } else {
         res = [...openMenus, action.menuText];
       }
       return {
         ...state,
         openMenus: res,
-        openLink: ""
+        openLink: "",
       };
     }
     case "TOGGLE_OPEN_STRUCTURE":
@@ -101,14 +100,14 @@ const navBarReducer = (state, action) => {
 
 export default function NavBar(props) {
   // console.log("Location", window.location.href);
-//   const [logoUser, setLogoUser] = useState("");
-//   const { language, changeLang } = useContext(LanguageContext);
-//   const { setUser, clearSession, user } = useContext(AuthContext);
+  //   const [logoUser, setLogoUser] = useState("");
+  //   const { language, changeLang } = useContext(LanguageContext);
+  //   const { setUser, clearSession, user } = useContext(AuthContext);
   const classes = useStyles();
   const history = useHistory();
-//   const { t } = useTranslation();
+  const { t } = useTranslation();
   const { handleSubmit, errors, control } = useForm({
-    defaultValues: {}
+    defaultValues: {},
   });
   const [state, dispatch] = useReducer(navBarReducer, {
     top: false,
@@ -121,38 +120,38 @@ export default function NavBar(props) {
     activeLink: "",
     openStructure: false,
     openEmpSetup: false,
-    openRoles: false
+    openRoles: false,
   });
- 
+
   const handleHomePage = () => {
     history.push(`/dashboard`);
   };
-  const handleClickProfile = event => {
+  const handleClickProfile = (event) => {
     dispatch({
       type: "SET_ANCHOR_EL",
-      anchorEl: event.currentTarget
+      anchorEl: event.currentTarget,
     });
   };
 
-//   const openLanguageMenu = event => {
-//     dispatch({
-//       type: "SET_LANG_ANCHOR_EL",
-//       languageAnchorEl: event.currentTarget
-//     });
-//   };
+  //   const openLanguageMenu = event => {
+  //     dispatch({
+  //       type: "SET_LANG_ANCHOR_EL",
+  //       languageAnchorEl: event.currentTarget
+  //     });
+  //   };
 
-//   const handleCloseLanguage = lang => {
-//     if (language !== lang && (lang === "en" || lang === "ar")) changeLang(lang);
-//     dispatch({
-//       type: "SET_LANG_ANCHOR_EL",
-//       languageAnchorEl: null
-//     });
-//   };
+  //   const handleCloseLanguage = lang => {
+  //     if (language !== lang && (lang === "en" || lang === "ar")) changeLang(lang);
+  //     dispatch({
+  //       type: "SET_LANG_ANCHOR_EL",
+  //       languageAnchorEl: null
+  //     });
+  //   };
 
   const handleCloseProfile = () => {
     dispatch({
       type: "SET_ANCHOR_EL",
-      anchorEl: null
+      anchorEl: null,
     });
   };
   const handleCloseLogout = () => {
@@ -164,30 +163,30 @@ export default function NavBar(props) {
     // history.push(`/my-profile`);
   };
 
-  const toggleMobileMenu = menu => {
+  const toggleMobileMenu = (menu) => {
     if (!menu.children.length > 0 || menu.isDeep) {
       dispatch({
         type: "TOGGLE_SIDE_NAV",
         side: "left",
-        open: false
+        open: false,
       });
       changeRoute(menu.link, menu.menuText);
     } else if (!menu.isDeep)
       dispatch({
         type: "TOGGLE_MOBILE_MENU",
-        menuText: menu.menuText
+        menuText: menu.menuText,
       });
   };
 
   const hadleOpenCloseMenu = (e, menu) => {
     dispatch({
       type: "TOGGLE_MOBILE_MENU",
-      menuText: menu.menuText
+      menuText: menu.menuText,
     });
     e.stopPropagation();
   };
 
-  const toggleDrawer = (side, open) => event => {
+  const toggleDrawer = (side, open) => (event) => {
     if (
       event &&
       event.type === "keydown" &&
@@ -199,39 +198,39 @@ export default function NavBar(props) {
     dispatch({
       type: "TOGGLE_SIDE_NAV",
       side,
-      open
+      open,
     });
   };
 
-  const isActiveMenu = menu => {
+  const isActiveMenu = (menu) => {
     const currentActiveRoute = history.location.pathname;
     return currentActiveRoute === "/" + menu;
   };
 
   const changeRoute = (link, menuText) => {
     // if (!history.location.pathname.includes("initial-setup"))
-      // history.push(`/${link}`);
-      history.push({ pathname: `/${link}`, state: { details: menuText } });
+    // history.push(`/${link}`);
+    history.push({ pathname: `/${link}`, state: { details: menuText } });
   };
 
   const desktopMenu = [
     {
-      menuText: "Dashboard",
+      menuText: t("Home"),
       link: "",
       active: isActiveMenu(""),
-      icon: DropDownIcon
+      icon: DropDownIcon,
     },
     {
-      menuText:"About",
+      menuText: t("About"),
       link: "about",
       active: isActiveMenu("about"),
-      icon: DropDownIcon
+      icon: DropDownIcon,
     },
     {
-      menuText:"Users",
-      link: "user",
-      active: isActiveMenu("user"),
-      icon: DropDownIcon
+      menuText: t("Contact"),
+      link: "contact",
+      active: isActiveMenu("contact"),
+      icon: DropDownIcon,
     },
     // {
     //   menuText: t(""),
@@ -244,25 +243,25 @@ export default function NavBar(props) {
   const mobileMenu = [
     {
       level: 1,
-      menuText: "dashboard",
+      menuText: t("Home"),
       link: "",
       active: isActiveMenu("dashboard"),
       icon: DropDownIcon,
-      children: []
+      children: [],
     },
 
     {
       level: 1,
-      menuText: "about",
+      menuText: t("About"),
       link: "about",
       icon: DropDownIcon,
-      children: [ ]
+      children: [],
     },
   ];
 
   const { anchorEl, openMenus, languageAnchorEl } = state;
 
-  const getMobileMenuItems = menu => {
+  const getMobileMenuItems = (menu) => {
     return menu.map((menu, index) => (
       <React.Fragment key={index}>
         {menu.toDisplay !== "yes" ? (
@@ -275,9 +274,9 @@ export default function NavBar(props) {
               <ListItemText primary={menu.menuText} />
               {menu.children.length > 0 ? (
                 openMenus.includes(menu.menuText) ? (
-                  <ExpandLess onClick={e => hadleOpenCloseMenu(e, menu)} />
+                  <ExpandLess onClick={(e) => hadleOpenCloseMenu(e, menu)} />
                 ) : (
-                  <ExpandMore onClick={e => hadleOpenCloseMenu(e, menu)} />
+                  <ExpandMore onClick={(e) => hadleOpenCloseMenu(e, menu)} />
                 )
               ) : null}
             </ListItem>
@@ -290,7 +289,7 @@ export default function NavBar(props) {
     ));
   };
 
-  const getSubMenus = menu => {
+  const getSubMenus = (menu) => {
     return (
       <Collapse
         in={openMenus.includes(menu.menuText)}
@@ -304,7 +303,7 @@ export default function NavBar(props) {
     );
   };
 
-  const sideList = side => (
+  const sideList = (side) => (
     <div
       className={classes.list}
       role="presentation"
@@ -358,8 +357,7 @@ export default function NavBar(props) {
             </IconButton> */}
 
             <span className="NavBar__logo_sec" onClick={handleHomePage}>
-              {' '}
-              
+              {" "}
               {/* { <img src={hrmsLogo} className="hrms-logo" alt="Logo" /> } */}
             </span>
             {/* <Toolbar className="NavBar__toolbar"> */}
@@ -370,7 +368,7 @@ export default function NavBar(props) {
                 <li
                   key={menu.link}
                   onClick={() => changeRoute(menu.link)}
-                  className={menu.active ? 'active-menu' : ''}
+                  className={menu.active ? "active-menu" : ""}
                 >
                   <span className="nav-dropdowns">
                     {menu.menuText}
@@ -381,9 +379,9 @@ export default function NavBar(props) {
                 </li>
               ))}
             </ul>
-          
 
             <section className="NavBar__right-align">
+              <LanguageSwitcher />
               <Tooltip title="Search" arrow>
                 <IconButton>
                   <SearchIcon className="icons" />
@@ -419,11 +417,11 @@ export default function NavBar(props) {
               <MenuIcon />
             </IconButton>
             <IconButton className="center-align">
-              
               {/* <img src={hrmsLogo} className="hrms-logo" alt="Logo" /> */}
             </IconButton>
 
             <section className="NavBar__right-align NavBar__mob_right_section">
+              <LanguageSwitcher />
               {/* <div><p>Heeee</p></div> */}
 
               {/* <LanguageDropdown

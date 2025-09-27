@@ -110,7 +110,7 @@ const Contact = (props) => {
     <div className="Contact__main-container">
       <div className="Contact__section-header">
         <h2 className="Contact__section-title section-title">
-          <span>Contact us</span>
+          <span>{t("Contact us")}</span>
         </h2>
       </div>
       <div className="Contact__inner-container">
@@ -120,7 +120,7 @@ const Contact = (props) => {
         <div className="Contact__sub-sec">
           <div className="Contact__form-section">
             <div className="Contact__form-inner-sec">
-              <p className="Contact__form-header">Let's work together</p>
+              <p className="Contact__form-header">{t("Let's work together")}</p>
 
               {/* Status Messages */}
               {submitStatus.message && (
@@ -138,18 +138,18 @@ const Contact = (props) => {
                   <div className="form-group-col custom-dropdown">
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-label">
-                        Title
+                        {t("Title")}
                       </InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={title}
-                        label="Title"
+                        label={t("Title")}
                         onChange={handleChange}
                       >
-                        <MenuItem value="Mr.">Mr.</MenuItem>
-                        <MenuItem value="Mrs.">Mrs.</MenuItem>
-                        <MenuItem value="Ms.">Ms.</MenuItem>
+                        <MenuItem value="Mr.">{t("Mr.")}</MenuItem>
+                        <MenuItem value="Mrs.">{t("Mrs.")}</MenuItem>
+                        <MenuItem value="Ms.">{t("Ms.")}</MenuItem>
                       </Select>
                     </FormControl>
                     {/* <CustomAutoDropDown
@@ -179,14 +179,14 @@ const Contact = (props) => {
                       disabled={false}
                       required
                       rules={{
-                        required: "user name required",
+                        required: t("user name required"),
                         pattern: {
                           value: /^[^\s][a-zA-Z0-9\s]*[a-zA-Z0-9]$/,
-                          message: "user name required",
+                          message: t("user name required"),
                         },
                         maxLength: {
                           value: 40,
-                          message: "nameMaxLengthValidMsg",
+                          message: t("nameMaxLengthValidMsg"),
                         },
                       }}
                     />
@@ -203,14 +203,14 @@ const Contact = (props) => {
                       disabled={false}
                       required
                       rules={{
-                        required: "email required",
+                        required: t("email required"),
                         pattern: {
                           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,3}$/i,
-                          message: "invalid email",
+                          message: t("invalid email"),
                         },
                         maxLength: {
                           value: 40,
-                          message: "nameMaxLengthValidMsg",
+                          message: t("nameMaxLengthValidMsg"),
                         },
                       }}
                     />
@@ -229,15 +229,18 @@ const Contact = (props) => {
                       errors={errors}
                       required
                       rules={{
-                        required: "Please enter a message",
+                        required: t("Please enter a message"),
                         minLength: {
                           value: 10,
-                          message:
-                            "Message must be at least 10 characters long",
+                          message: t(
+                            "Message must be at least 10 characters long"
+                          ),
                         },
                         maxLength: {
                           value: 500,
-                          message: "Message must be less than 500 characters",
+                          message: t(
+                            "Message must be less than 500 characters"
+                          ),
                         },
                       }}
                     />
@@ -264,7 +267,7 @@ const Contact = (props) => {
                   </div>
                   <div className="Contact__form-footer-right-sec">
                     <button type="submit" disabled={isSubmitting}>
-                      {isSubmitting ? "Sending..." : "Send Enquiry"}
+                      {isSubmitting ? t("Sending...") : t("Send Enquiry")}
                     </button>
                   </div>
                 </div>

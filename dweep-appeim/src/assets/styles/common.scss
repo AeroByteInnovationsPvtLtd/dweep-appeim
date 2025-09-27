@@ -16,6 +16,25 @@ body {
 *{
   box-sizing: border-box;
 }
+
+/* RTL Support */
+.oriental-rtl {
+  direction: rtl;
+  font-family: "Tajawal", "Montserrat", sans-serif;
+  
+  * {
+    text-align: right;
+  }
+}
+
+.en {
+  direction: ltr;
+  font-family: "Montserrat", sans-serif;
+  
+  * {
+    text-align: left;
+  }
+}
 @font-face {
   font-family: "Montserrat";
   // src: url("../fonts/Montserrat-Regular.eot");

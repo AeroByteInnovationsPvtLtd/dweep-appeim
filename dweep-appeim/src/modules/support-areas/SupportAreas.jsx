@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Swiper from "react-id-swiper";
+import { useTranslation } from "react-i18next";
 import BaseCorrection from "../../assets/images/BaseCorrection1.png";
 import colorSolutionImg from "../../assets/images/colorSolution.png";
 import dispensingSoftwareImg from "../../assets/images/dispensingSoftware.png";
@@ -33,6 +34,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const SupportAreas = (props) => {
+  const { t } = useTranslation();
   const swiperRef = useRef(null);
   const [selectedImageData, setSelectedImageData] = useState({
     id: 2,
@@ -102,38 +104,38 @@ const SupportAreas = (props) => {
     {
       id: 1,
       imgUrl: BaseCorrection,
-      imgText: "Paint Base Correction",
+      imgText: t("Paint Base Correction"),
       isOffer: false,
     },
     {
       id: 2,
       imgUrl: colorSolutionImg,
-      imgText: "Color Solution",
+      imgText: t("Color Solution"),
       isOffer: true,
     },
     {
       id: 3,
       imgUrl: dispensingSoftwareImg,
-      imgText: "Dispensing Software",
+      imgText: t("Dispensing Software"),
       isOffer: false,
     },
     {
       id: 4,
       imgUrl: colorDatabaseImg,
-      imgText: "Color Database",
+      imgText: t("Color Database"),
       isOffer: false,
     },
     {
       id: 5,
       imgUrl: dispenserSupportImg,
-      imgText: "Dispenser Support",
+      imgText: t("Dispenser Support"),
       isOffer: false,
     },
 
     {
       id: 6,
       imgUrl: singleSourceImg,
-      imgText: "Single Source Solution",
+      imgText: t("Single Source Solution"),
       isOffer: false,
     },
   ];
@@ -177,35 +179,35 @@ const SupportAreas = (props) => {
       id: 2,
       data: [
         {
-        heading: "Color Matching & Formulation",
-        paragraph:
-          "We Help in developing precise color recipes to meet customer or paint industry specifications.",
-        subData: {
-          subImageUrl: subInfoImageOne,
-          title: "Color Matching & Formulation",
-          desc: `We Help in developing precise color recipes to meet customer or paint industry specifications.`,
+          heading: "Color Matching & Formulation",
+          paragraph:
+            "We Help in developing precise color recipes to meet customer or paint industry specifications.",
+          subData: {
+            subImageUrl: subInfoImageOne,
+            title: "Color Matching & Formulation",
+            desc: `We Help in developing precise color recipes to meet customer or paint industry specifications.`,
+          },
         },
-      },
-      {
-        heading: "Base & Tint Optimization",
-        paragraph:
-          "We offer service to ensuring paint bases and colorants blend seamlessly for accurate, repeatable shades.",
-        subData: {
-          subImageUrl: subInfoImageOne,
-          title: "Base & Tint Optimization",
-          desc: `We offer service to ensuring paint bases and colorants blend seamlessly for accurate, repeatable shades.`,
+        {
+          heading: "Base & Tint Optimization",
+          paragraph:
+            "We offer service to ensuring paint bases and colorants blend seamlessly for accurate, repeatable shades.",
+          subData: {
+            subImageUrl: subInfoImageOne,
+            title: "Base & Tint Optimization",
+            desc: `We offer service to ensuring paint bases and colorants blend seamlessly for accurate, repeatable shades.`,
+          },
         },
-      },
-      {
-        heading: "Quality Control & Standardization",
-        paragraph:
-          "We train your team on industry instruments (like spectrophotometers) to verify consistency, durability, and performance of the final color.",
-        subData: {
-          subImageUrl: subInfoImageOne,
-          title: " Quality Control & Standardization",
-          desc: `We train your team on industry instruments (like spectrophotometers) to verify consistency, durability, and performance of the final color.`,
+        {
+          heading: "Quality Control & Standardization",
+          paragraph:
+            "We train your team on industry instruments (like spectrophotometers) to verify consistency, durability, and performance of the final color.",
+          subData: {
+            subImageUrl: subInfoImageOne,
+            title: " Quality Control & Standardization",
+            desc: `We train your team on industry instruments (like spectrophotometers) to verify consistency, durability, and performance of the final color.`,
+          },
         },
-      },
       ],
     },
     {
@@ -266,7 +268,7 @@ const SupportAreas = (props) => {
             desc: "Quickly retrieves and matches colors for consistent results.",
           },
         },
-         {
+        {
           heading: "Regular Updates & Standardization",
           paragraph:
             "Ensures color data is current and uniform across all locations.",
@@ -291,7 +293,7 @@ const SupportAreas = (props) => {
             desc: "Our dispenser technicians specialize in leading brands such as Fast & Fluid, Corob, and more, with dedicated services available across all major cities in Saudi Arabia. ",
           },
         },
-         {
+        {
           heading: "Spare Parts Availability",
           paragraph:
             "We provide a variety of spare parts for most dispenser brands used in the paint industry across Saudi Arabia.",
@@ -301,7 +303,7 @@ const SupportAreas = (props) => {
             desc: "We provide a variety of spare parts for most dispenser brands used in the paint industry across Saudi Arabia.",
           },
         },
-         {
+        {
           heading: "Support App",
           paragraph:
             "Our support app ensures all retail store requests are handled promptly and serviced without delays.",
@@ -335,7 +337,8 @@ const SupportAreas = (props) => {
             title: "Consistent Color Accuracy",
             desc: "Ensures precise and repeatable shades across all locations.",
           },
-        },{
+        },
+        {
           heading: "Efficient Service & Support",
           paragraph:
             "Provides end-to-end support, from setup to maintenance, reducing downtime.",
@@ -369,7 +372,7 @@ const SupportAreas = (props) => {
     <div className="SupportAreas__main-container">
       <div className="SupportAreas__section-header">
         <h2 className="SupportAreas__section-title section-title">
-          <span> Support Areas</span>
+          <span>{t("Support Areas")}</span>
         </h2>
       </div>
       <div className="SupportAreas__swiper-section">
@@ -393,7 +396,7 @@ const SupportAreas = (props) => {
                   onClick={() => handleImageClick("", obj.id, index)}
                 >
                   <span className="masking-image"></span>
-                  
+
                   <img className="swiper-image" src={obj.imgUrl} alt="S" />
                   <p className="slider-item-heading">{obj.imgText}</p>
                 </div>

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import "./assets/styles/common.scss";
 import "./i18n";
+import { useTranslation } from "react-i18next";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
@@ -45,6 +46,7 @@ const useStyles = makeStyles({
 });
 
 const App = () => {
+  const { t, i18n } = useTranslation();
   const [visibleSection, setVisibleSection] = useState();
   const [showWebDevelopment, setShowWebDevelopment] = useState(false);
   const [showMobileDevelopment, setShowMobileDevelopment] = useState(false);
@@ -55,8 +57,13 @@ const App = () => {
     bottom: false,
     right: false,
   });
-  const [isLangChange, setLangChange] = useState(true);
-  const toggleLanguage = () => setLangChange(!isLangChange);
+  const [isLangChange, setLangChange] = useState(i18n.language === "en");
+
+  const toggleLanguage = () => {
+    const newLang = isLangChange ? "ar" : "en";
+    i18n.changeLanguage(newLang);
+    setLangChange(!isLangChange);
+  };
 
   const toggleDrawer = (anchor, open) => (event) => {
     // console.log("calleds");
@@ -136,7 +143,7 @@ const App = () => {
   return (
     <div
       className={
-        isLangChange
+        i18n.language === "en"
           ? "App__main-container en"
           : "App__main-container oriental-rtl"
       }
@@ -160,7 +167,7 @@ const App = () => {
                     scrollTo(homeRef.current);
                   }}
                 >
-                  Home
+                  {t("Home")}
                 </button>
                 <button
                   type="button"
@@ -171,7 +178,7 @@ const App = () => {
                     scrollTo(aboutRef.current);
                   }}
                 >
-                  About
+                  {t("About")}
                 </button>
                 <button
                   type="button"
@@ -182,7 +189,7 @@ const App = () => {
                     scrollTo(supportAreasRef.current);
                   }}
                 >
-                  Support areas
+                  {t("Support areas")}
                 </button>
                 <button
                   type="button"
@@ -193,25 +200,24 @@ const App = () => {
                     scrollTo(contactRef.current);
                   }}
                 >
-                  Contact Us
+                  {t("Contact Us")}
                 </button>
               </div>
               <div className="App__language-section">
                 <Button onClick={toggleLanguage}>
-                  {isLangChange ? (
+                  {i18n.language === "en" ? (
                     <span className="lang-lbl">
                       <span className="lang-icon">
                         <img src={arabicIcon} alt="L" />
                       </span>
-                      Arabic
-                      {/* عربى */}
+                      {t("Arabic")}
                     </span>
                   ) : (
                     <span className="lang-lbl">
                       <span className="lang-icon">
                         <img src={englishIcon} alt="L" />
                       </span>
-                      English
+                      {t("English")}
                     </span>
                   )}
                 </Button>
@@ -238,15 +244,12 @@ const App = () => {
                           className={`header_link ${
                             visibleSection === "Home" ? "selected" : ""
                           }`}
-                          // onClick={() => {
-                          //   scrollTo(homeRef.current);
-                          // }}
                           onClick={(e) => {
                             scrollTo(homeRef.current);
                             toggleDrawer(anchor, false)(e);
                           }}
                         >
-                          Home
+                          {t("Home")}
                         </button>
                         <button
                           type="button"
@@ -259,7 +262,7 @@ const App = () => {
                             toggleDrawer(anchor, false)(e);
                           }}
                         >
-                          About
+                          {t("About")}
                         </button>
                         <button
                           type="button"
@@ -271,7 +274,7 @@ const App = () => {
                             scrollTo(supportAreasRef.current);
                           }}
                         >
-                          Support areas
+                          {t("Support areas")}
                         </button>
                         <button
                           type="button"
@@ -283,7 +286,7 @@ const App = () => {
                             scrollTo(contactRef.current);
                           }}
                         >
-                          Contact Us
+                          {t("Contact Us")}
                         </button>
                       </div>
                     </SwipeableDrawer>

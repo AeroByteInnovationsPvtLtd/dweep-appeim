@@ -1,0 +1,44 @@
+.language-switcher {
+  .lang-lbl {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    
+    .lang-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      img {
+        width: 100%;
+        height: auto;
+        max-height: 16px;
+      }
+    }
+  }
+
+  button {
+    text-transform: none !important;
+    padding: 6px 12px !important;
+    border-radius: 6px !important;
+    min-width: auto !important;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04) !important;
+    }
+  }
+}
+
+/* RTL Support */
+.oriental-rtl {
+  .language-switcher {
+    .lang-lbl {
+      flex-direction: row-reverse;
+    }
+  }
+}

@@ -4,28 +4,27 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Swiper from "react-id-swiper";
+import { useTranslation } from "react-i18next";
 
 import colormatchingImg from "../../assets/images/colormatching.png";
 import basecorrectionImg from "../../assets/images/basecorrection.png";
-
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Home = (props) => {
+  const { t } = useTranslation();
   let sliderImages = [
-   
     {
       id: 2,
       imgUrl: basecorrectionImg,
-      imgText: "Base Correction"
+      imgText: t("Base Correction"),
     },
-     {
+    {
       id: 1,
       imgUrl: colormatchingImg,
-      imgText: "Color Matching"
+      imgText: t("Color Matching"),
     },
-
   ];
   const params = {
     slidesPerView: 2,
@@ -76,18 +75,19 @@ const Home = (props) => {
       <div className="Home__inner-container-row">
         <div className="Home__inner-container-col left-sec">
           <div className="Home__banner-left-info-sec">
-            <p className="Home__banner-heading-one">INTIGRATING Color Tinting,</p>
-            <p className="Home__banner-heading-two">DELIVERING RESULTS.</p>
-            <p className="Home__banner-sub-heading">
-              We provide next generation
+            <p className="Home__banner-heading-one">
+              {t("INTIGRATING Color Tinting,")}
+            </p>
+            <p className="Home__banner-heading-two">
+              {t("DELIVERING RESULTS.")}
             </p>
             <p className="Home__banner-sub-heading">
-               Tinitng Color Solutions
+              {t("We provide next generation")}
             </p>
-            
+            <p className="Home__banner-sub-heading">
+              {t("Tinitng Color Solutions")}
+            </p>
           </div>
-          
-
         </div>
         <div className="Home__inner-container-col right-sec">
           <div className="Home__swiper-container">

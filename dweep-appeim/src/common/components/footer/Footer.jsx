@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import "./Footer.scss";
+import { useTranslation } from "react-i18next";
 import logo from "../../../assets/images/footer-logo.svg";
 import FacebookIcon from "../../../assets/images/balck-facebook-icon.svg";
 import TwitterIcon from "../../../assets/images/balck-twitter-icon.svg";
 import LinkedInIcon from "../../../assets/images/balck-linkedin-icon.svg";
 import InstagramIcon from "../../../assets/images/balck-instagram-icon.svg";
 const Footer = ({ scrollTo, refs }) => {
+  const { t } = useTranslation();
   return (
     <div className="Footer__main-container">
       <div className="Footer__nav-links-section">
@@ -20,23 +22,29 @@ const Footer = ({ scrollTo, refs }) => {
               onClick={() => {
                 scrollTo(refs.homeRef.current);
               }}
-            >Home</li>
+            >
+              {t("Home")}
+            </li>
             <li
               onClick={() => {
                 scrollTo(refs.aboutRef.current);
               }}
-            >About Us</li>
+            >
+              {t("About Us")}
+            </li>
             <li
               onClick={() => {
                 scrollTo(refs.supportAreasRef.current);
               }}
-            >Support areas</li>
+            >
+              {t("Support areas")}
+            </li>
             <li
               onClick={() => {
                 scrollTo(refs.contactRef.current);
               }}
             >
-              Contact
+              {t("Contact")}
             </li>
           </ul>
         </div>
@@ -66,7 +74,7 @@ const Footer = ({ scrollTo, refs }) => {
         </div>
       </div>
       <div className="Footer__copy-right-section">
-        <span> © 2025 All rights reserved. Dweep LLC USA</span>
+        <span>{t("© 2025 All rights reserved. Dweep LLC USA")}</span>
       </div>
     </div>
   );
