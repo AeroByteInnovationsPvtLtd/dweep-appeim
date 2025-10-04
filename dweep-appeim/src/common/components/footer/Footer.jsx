@@ -5,6 +5,8 @@ import FacebookIcon from "../../../assets/images/balck-facebook-icon.svg";
 import TwitterIcon from "../../../assets/images/balck-twitter-icon.svg";
 import LinkedInIcon from "../../../assets/images/balck-linkedin-icon.svg";
 import InstagramIcon from "../../../assets/images/balck-instagram-icon.svg";
+import appStore from "../../../assets/images/app-store.svg";
+import playStore from "../../../assets/images/google-play.svg";
 const Footer = ({ scrollTo, refs }) => {
   return (
     <div className="Footer__main-container">
@@ -12,6 +14,8 @@ const Footer = ({ scrollTo, refs }) => {
         <div className="Footer__nav-link-item">
           <span className="Footer__footer-logo">
             <img src={logo} alt="L" />
+            <img src={appStore} className="AppStore" />
+            <img src={playStore} className="PlayStore" />
           </span>
         </div>
         <div className="Footer__nav-link-item-sec">
@@ -20,17 +24,23 @@ const Footer = ({ scrollTo, refs }) => {
               onClick={() => {
                 scrollTo(refs.homeRef.current);
               }}
-            >Home</li>
+            >
+              Home
+            </li>
             <li
               onClick={() => {
                 scrollTo(refs.aboutRef.current);
               }}
-            >About Us</li>
+            >
+              About Us
+            </li>
             <li
               onClick={() => {
                 scrollTo(refs.supportAreasRef.current);
               }}
-            >Support areas</li>
+            >
+              Support areas
+            </li>
             <li
               onClick={() => {
                 scrollTo(refs.contactRef.current);
